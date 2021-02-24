@@ -31,7 +31,16 @@ setTimeout(async () => {
         r = await getCFXHeader(r);
         tentativas++;
         console.log(`[CFX RESOLVER] RESOLVENDO, TENTATIVA NUMERO ${tentativas}, IP RESOLVIDO : ${r}`)
-
+        if (tentativas == 3) {
+            console.log("[CFX RESOLVER] NUMERO DE TENTATIVAS EXCEDIDO, TROCANDO DE METODO!")
+            r = await (new Promise((finish,reject) =>{
+                request(`https://servers-frontend.fivem.net/api/servers/single/${cfxlink.split("/")[4]}`, (err, res, body) => {
+                    if (err) { return console.log(err); }
+                    finish(JSON.parse(body).Data.connectEndPoints[0]);
+                });
+            }));
+            break;
+        }
     }
     console.log(`[CFX RESOLVER] CFX ${cfxlink} RESOLVIDO PARA ${r}`);
 })
