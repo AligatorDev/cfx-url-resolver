@@ -28,9 +28,10 @@ setTimeout(async () => {
     let r = await getCFXHeader(cfxlink);
 
     while (r.includes("users.cfx.re")) {
-        tentativas++;
-        console.log(`[CFX RESOLVER] RESOLVENDO, TENTATIVA NUMERO ${tentativas}`)
         r = await getCFXHeader(r);
+        tentativas++;
+        console.log(`[CFX RESOLVER] RESOLVENDO, TENTATIVA NUMERO ${tentativas}, IP RESOLVIDO : ${r}`)
+
     }
     console.log(`[CFX RESOLVER] CFX ${cfxlink} RESOLVIDO PARA ${r}`);
 })
