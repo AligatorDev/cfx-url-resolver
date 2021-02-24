@@ -1,16 +1,5 @@
-
-
-
-
-
 let cfxlink = process.argv[2];
 const request = require('request');
-
-
-
-
-
-
 
 
 
