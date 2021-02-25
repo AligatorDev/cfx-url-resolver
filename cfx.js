@@ -1,13 +1,19 @@
 let cfxlink = process.argv[2];
 const request = require('request');
-
-
+if(!cfxlink) 
+{
+    console.log("[CFX RESOLVER] cfx (link)");
+    process.exit(0);
+}
 
 if(!cfxlink.startsWith("http"))
     cfxlink = "https://"+cfxlink;
 
 if(!cfxlink.match( /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/))
+{
     console.log("[CFX RESOLVER] LINK INVALIDO");
+    process.exit(0);
+}   
 function getCFXHeader(link) 
 {
     return new Promise((finish,reject) =>{
