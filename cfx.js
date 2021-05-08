@@ -29,11 +29,12 @@ function getCFXHeader(link)
 try {
 let tentativas = 0;
 setTimeout(async () => {
+
     console.log("[CFX RESOLVER] COMEÇANDO A RESOLVER...");
 
     let r = await getCFXHeader(cfxlink);
 
-    while (r.includes("users.cfx.re")) {
+    while (r && r.includes("users.cfx.re")) {
         r = await getCFXHeader(r);
         tentativas++;
         console.log(`[CFX RESOLVER] RESOLVENDO, TENTATIVA NUMERO ${tentativas}, IP RESOLVIDO : ${r}`)
@@ -48,7 +49,9 @@ setTimeout(async () => {
             break;
         }
     }
+    if(!r) return  console.log(`[CFX RESOLVER] SERVIDOR OFFLINE!`);
     console.log(`[CFX RESOLVER] CFX ${cfxlink} RESOLVIDO PARA ${r}`);
+
 })
 
 } catch {console.log("[CFX RESOLVE] ERRO NÃO ESPERADO!")}
