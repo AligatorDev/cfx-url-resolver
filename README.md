@@ -28,7 +28,7 @@ Now, return to console
 - Write :
 
 ```
-  npm install request
+  npm install node-fetch
 ```
 
 Your cfx-resolver was install! Now let's use it!
