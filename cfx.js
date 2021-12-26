@@ -1,5 +1,5 @@
 let cfxlink = process.argv[2];
-const fetch = require('node-fetch');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 if(!cfxlink) 
 {
     console.log("[CFX RESOLVER] cfx (link)");
